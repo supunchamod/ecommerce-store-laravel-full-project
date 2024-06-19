@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Categery;
+use App\Models\Cart;
 
 
 class Product extends Model
@@ -34,6 +35,13 @@ class Product extends Model
     {
         return $this->belongsTo(Categery::class, 'cat_id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    
 
     protected $casts = [
         'subImages' => 'array',

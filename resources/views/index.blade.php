@@ -123,15 +123,16 @@
             <div class="row">
                 <div class="col-12">
                     <div class="category-slider-1 arrow-slider wow fadeInUp">
+                    @foreach($categery as $data)
                         <div>
                             <div class="category-box-list">
                                 <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Fashion</h4>
+                                    <h4>{{$data->name}}</h4>
                                     <h6>25 items</h6>
                                 </a>
                                 <div class="category-box-view">
                                     <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/1.png"
+                                        <img src="{{ asset('assets/images/' . $data->image) }}"
                                             class="img-fluid blur-up lazyload" alt="">
                                     </a>
                                     <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
@@ -141,164 +142,233 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
 
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Beauty</h4>
-                                    <h6>20 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/2.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Accessories</h4>
-                                    <h6>14 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/3.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Health</h4>
-                                    <h6>43 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/4.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Stationery</h4>
-                                    <h6>23 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/5.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Baby care</h4>
-                                    <h6>54 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/6.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Electronics</h4>
-                                    <h6>32 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/7.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Sports</h4>
-                                    <h6>29 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/8.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="category-box-list">
-                                <a href="shop-left-sidebar.html" class="category-name">
-                                    <h4>Fashion</h4>
-                                    <h6>25 items</h6>
-                                </a>
-                                <div class="category-box-view">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="../assets/images/grocery/category/1.png"
-                                            class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';" class="btn shop-button">
-                                        <span>Shop Now</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Category Section End -->
+
+        <!-- Product Fruit & Vegetables Section Start -->
+        <section class="product-section-3">
+        <div class="container-fluid-lg">
+            <div class="title">
+                <h2>Drinks</h2>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="slider-7_1 arrow-slider img-slider">
+                        @foreach($drinks as $data)
+                        <div>
+                            <div class="product-box-4 wow fadeInUp">
+                                <div class="product-image product-image-2">
+                                    <a href="product-left-thumbnail.html">
+                                        <img src="{{ asset('/media/product/' . $data->mainImage) }}"
+                                            class="img-fluid blur-up lazyload" alt="">
+                                    </a>
+
+                                    <ul class="option">
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                                <i class="iconly-Show icli"></i>
+                                            </a>
+                                        </li>
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                            <a href="javascript:void(0)" class="notifi-wishlist">
+                                                <i class="iconly-Heart icli"></i>
+                                            </a>
+                                        </li>
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
+                                            <a href="compare.html">
+                                                <i class="iconly-Swap icli"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="product-detail">
+                                    <ul class="rating">
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star"></i>
+                                        </li>
+                                    </ul>
+                                    <a href="product-left-thumbnail.html">
+                                        <h5 class="name text-title">{{ $data->productName}}</h5>
+                                    </a>
+                                    <h5 class="price theme-color">Rs:{{ $data->productPrice}}</h5>
+
+                        <form action="{{ route('cart.add') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $data->id }}">
+                            <div class="addtocart_btn">
+                                <button type="submit" class="add-button addcart-button btn buy-button text-light">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="qty-box cart_qty">
+                                    <div class="input-group">
+                                        <button type="button" class="btn qty-left-minus" data-type="minus"
+                                            data-field="">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <input class="form-control input-number qty-input" type="text"
+                                            name="quantity" value="1">
+                                        <button type="button" class="btn qty-right-plus" data-type="plus"
+                                            data-field="">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Fruit & Vegetables Section End -->
+
+    <!-- Banner Section Start -->
+    <section class="bank-section overflow-hidden">
+        <div class="container-fluid-lg">
+            <div class="title">
+                <h2>Bank & Wallet Offers</h2>
+            </div>
+            <div class="slider-bank-3 arrow-slider slick-height">
+                <div>
+                    <div class="bank-offer">
+                        <div class="bank-header">
+                            <div class="bank-left w-100">
+                                <div class="bank-image">
+                                    <img src="../assets/images/grocery/bank/name/1.png" class="img-fluid" alt="">
+                                </div>
+                                <div class="bank-name">
+                                    <h2>GET 10% OFF</h2>
+                                    <h5 class="discount text-content">When you spend $20</h5>
+                                    <h5 class="valid text-content">Valid for 30 days</h5>
+                                </div>
+                            </div>
+
+                            <div class="bank-right w-100">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/images/grocery/bank/price/1.svg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+
+                        <div class="bank-footer bank-footer-1">
+                            <h4>Code :
+                                <input id="clipboardexample" value="MULTICART">
+                            </h4>
+                            <button type="button" class="bank-coupon btn" id="copyText" data-clipboard-action="copy"
+                                data-clipboard-target="#clipboardexample">Copy Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bank-offer">
+                        <div class="bank-header">
+                            <div class="bank-left w-100">
+                                <div class="bank-image">
+                                    <img src="../assets/images/grocery/bank/name/2.png" class="img-fluid" alt="">
+                                </div>
+                                <div class="bank-name">
+                                    <h2 class="bank-offer-2">GET 10% OFF</h2>
+                                    <h5 class="discount text-content">When you spend $20</h5>
+                                    <h5 class="valid text-content">Valid for 30 days</h5>
+                                </div>
+                            </div>
+
+                            <div class="bank-right w-100">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/images/grocery/bank/price/2.svg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+
+                        <div class="bank-footer bank-footer-2">
+                            <h4>Code :
+                                <input id="clipboardexample1" value="MULTICART">
+                            </h4>
+                            <button class="bank-coupon btn" id="copyText1">Copy Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bank-offer">
+                        <div class="bank-header">
+                            <div class="bank-left w-100">
+                                <div class="bank-image">
+                                    <img src="../assets/images/grocery/bank/name/3.png" class="img-fluid" alt="">
+                                </div>
+                                <div class="bank-name">
+                                    <h2 class="bank-offer-3">GET 10% OFF</h2>
+                                    <h5 class="discount text-content">When you spend $20</h5>
+                                    <h5 class="valid text-content">Valid for 30 days</h5>
+                                </div>
+                            </div>
+
+                            <div class="bank-right w-100">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/images/grocery/bank/price/3.svg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+
+                        <div class="bank-footer bank-footer-3">
+                            <h4>Code :
+                                <input id="clipboardexample2" value="MULTICART">
+                            </h4>
+                            <button class="bank-coupon btn" id="copyText2">Copy Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bank-offer">
+                        <div class="bank-header">
+                            <div class="bank-left w-100">
+                                <div class="bank-image">
+                                    <img src="../assets/images/grocery/bank/name/1.png" class="img-fluid" alt="">
+                                </div>
+                                <div class="bank-name">
+                                    <h2>GET 10% OFF</h2>
+                                    <h5 class="discount text-content">When you spend $20</h5>
+                                    <h5 class="valid text-content">Valid for 30 days</h5>
+                                </div>
+                            </div>
+
+                            <div class="bank-right w-100">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/images/grocery/bank/price/1.svg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+
+                        <div class="bank-footer bank-footer-1">
+                            <h4>Code :
+                                <input id="clipboardexample3" value="MULTICART">
+                            </h4>
+                            <button class="bank-coupon btn" id="copyText3">Copy Code</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
 
     <!-- Service Section Start -->
     <section class="service-section section-b-space">

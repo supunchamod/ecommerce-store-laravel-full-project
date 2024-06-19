@@ -101,7 +101,8 @@
                     <td>
                       <div class="d-flex align-items-center gap-3">
                         <div class="product-box">
-                          <img src="{{ asset('media/product/' . $data->mainImage) }}" width="70" class="rounded-3" alt="">
+                          <img src="{{ asset('media/product/' . $data->mainImage) }}" width="70" style="height: 100px;
+" class="rounded-3" alt="">
                         </div>
                         <div class="product-info">
                           <a href="javascript:;" class="product-title">{{$data->productName}}</a>
