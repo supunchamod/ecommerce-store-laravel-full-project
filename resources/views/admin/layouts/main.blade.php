@@ -41,7 +41,7 @@
 
     @include('admin.layouts.footer')
 
-  <script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/metismenu/metisMenu.min.js') }}"></script>
@@ -50,6 +50,7 @@
 <script src="{{ asset('admin/assets/plugins/peity/jquery.peity.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/dashboard2.js') }}"></script>
 <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+
 
 <script>
   $(".data-attributes span").peity("donut");

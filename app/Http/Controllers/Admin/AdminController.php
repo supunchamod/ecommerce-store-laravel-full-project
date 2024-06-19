@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categery;
+use App\Models\Product;
+
 
 class AdminController extends Controller
 {
@@ -16,6 +18,9 @@ class AdminController extends Controller
     }
     public function view_category(){
         $categery = Categery::all();
-        return view('admin.category.view-category',compact('categery'));
+        $products = Product::all();
+        return view('admin.category.view-category',compact('categery','products'));
     }
+   
 }
+https://chatgpt.com/c/4b915d62-fe2e-4e6a-8196-41881d591031

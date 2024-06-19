@@ -6,44 +6,27 @@
     <div class="main-content">
       <!--breadcrumb-->
       <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">eCommerce</div>
+        <div class="breadcrumb-title pe-3">Category</div>
         <div class="ps-3">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
               <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">Products</li>
+              <li class="breadcrumb-item active" aria-current="page">Category Details</li>
             </ol>
           </nav>
-        </div>
-        <div class="ms-auto">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary">Settings</button>
-            <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
-              data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                href="javascript:;">Action</a>
-              <a class="dropdown-item" href="javascript:;">Another action</a>
-              <a class="dropdown-item" href="javascript:;">Something else here</a>
-              <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
-            </div>
-          </div>
         </div>
       </div>
       <!--end breadcrumb-->
 
       <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
         <a href="javascript:;"><span class="me-1">All</span><span class="text-secondary">(88754)</span></a>
-        <a href="javascript:;"><span class="me-1">Published</span><span class="text-secondary">(56242)</span></a>
-        <a href="javascript:;"><span class="me-1">Drafts</span><span class="text-secondary">(17)</span></a>
-        <a href="javascript:;"><span class="me-1">On Discount</span><span class="text-secondary">(88754)</span></a>
       </div>
 
       <div class="row g-3">
         <div class="col-auto">
           <div class="position-relative">
-            <input class="form-control px-5" type="search" placeholder="Search Products">
+            <input class="form-control px-5" type="search" placeholder="Search Category">
             <span
               class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
           </div>
@@ -51,57 +34,32 @@
         <div class="col-auto flex-grow-1 overflow-auto">
           <div class="btn-group position-static">
             <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Category
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
-            </div>
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Vendor
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
-            </div>
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Collection
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
+              
             </div>
           </div>
         </div>
         <div class="col-auto">
           <div class="d-flex align-items-center gap-2 justify-content-lg-end">
             <button class="btn btn-filter px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
-            <a href="/admin/add-category"><button class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>Add Product</button></a>
+            <a href="/admin/add-category"><button class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>Add Category</button></a>
           </div>
         </div>
       </div><!--end row-->
 
+                     @if(session('success'))
+                            <div class="alert alert-success border-0 bg-grd-success alert-dismissible fade show" style="margin-top: 20px;">
+									<div class="d-flex align-items-center">
+										<div class="font-35 text-white"><span class="material-icons-outlined fs-2">check_circle</span>
+										</div>
+										<div class="ms-3">
+                                        {{ session('success') }}
+										</div>
+									</div>
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+                      @endif		
+      
+                                
       <div class="card mt-4">
         <div class="card-body">
           <div class="product-table">
@@ -142,17 +100,11 @@
                     <td>456</td>
                     <td>{{$data->created_at}}</td>
                     <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
+                     <form action="{{ route('category.destroy', $data->id) }}" method="POST" style="display: inline-block;">
+                      @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-grd btn-grd-danger">Delete</button>
+                      </form>
                     </td>
                   </tr>
                   @endforeach

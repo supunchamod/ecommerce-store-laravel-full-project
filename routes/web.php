@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategeryController;
+use App\Http\Controllers\Admin\ProductController;
+
 
 
 /*
@@ -35,7 +37,11 @@ require __DIR__.'/auth.php';
 Route::get('/dashboard',[AdminController :: class , 'dashboard']);
 Route::get('/admin/add-category',[AdminController :: class , 'add_category'])->name('add.category');
 Route::get('/admin/view-category',[AdminController :: class , 'view_category'])->name('view.category');
+Route::get('/admin/add-product',[ProductController :: class , 'add_product'])->name('add.product');
+Route::get('/admin/view-product',[ProductController :: class , 'view_product'])->name('view.product');
 
 
+
+Route::resource('products', ProductController::class);
 
 Route::resource('category', CategeryController::class);

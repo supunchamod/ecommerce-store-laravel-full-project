@@ -625,6 +625,19 @@
                 </li>
               </ul>     
             </li>
+            <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">shopping_bag</i>
+                </div>
+                <div class="menu-title">Product</div>
+              </a>
+              <ul>
+                <li><a href="/admin/add-product"><i class="material-icons-outlined">arrow_right</i>Add Product</a>
+                </li>
+                <li><a href="/admin/view-product"><i class="material-icons-outlined">arrow_right</i>View Product</a>
+                </li>
+              </ul>     
+            </li>
            </ul>
           <!--end navigation-->
       </div>
