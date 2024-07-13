@@ -13,6 +13,21 @@ class HomeController extends Controller
 
         $categery = Categery::all();
         $drinks = Product::where('cat_id', 18)->get();
-        return view('index',compact('categery','drinks'));
+        $breakfast = Product::where('cat_id', 20)->get();
+        $chemist = Product::where('cat_id', 21)->get();
+        return view('index',compact('categery','drinks','breakfast','chemist'));
+    }
+
+    public function shop(){
+
+        $categery = Categery::all();
+        $product = Product::all();
+        $count = Categery::withCount('products')->get();
+        return view('shop',compact('categery','product','count'));
+    }
+
+    public function productDetail($slug){
+        $product_details = Product::where('slug', $slug)->firstOrFail();
+        return view('ShopDetails',compact('product_details'));
     }
 }

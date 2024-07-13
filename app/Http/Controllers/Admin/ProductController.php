@@ -105,7 +105,7 @@ class ProductController extends Controller
     }
 
     // Handle the sub images upload
-    $subImages = [];
+    $subImages = array();
     if ($request->hasFile('subImages')) {
         foreach ($request->file('subImages') as $file) {
             $image_name = md5(rand(1000, 10000));
@@ -114,8 +114,10 @@ class ProductController extends Controller
             $file->move(public_path('media/product'), $image_full_name);
             $subImages[] = $image_full_name;
         }
-        $product->subImages = json_encode($subImages);
     }
+    
+    $product->subImages = implode('|',$subImages);
+    
 
     // Save the product
     $product->save();

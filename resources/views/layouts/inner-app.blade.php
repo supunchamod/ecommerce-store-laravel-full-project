@@ -13,6 +13,10 @@
     <link rel="icon" href="../assets/images/favicon/1.png" type="image/x-icon">
     <title>On-demand last-mile delivery</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&amp;display=swap" rel="stylesheet">
@@ -220,7 +224,7 @@
                                         <div class="onhover-dropdown header-badge">
                                             <button type="button" class="btn p-0 position-relative header-wishlist">
                                                 <i data-feather="shopping-cart"></i>
-                                                <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                                <span class="position-absolute top-0 start-100 translate-middle badge">{{ $cartCount ?? 0 }}
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                             </button>
@@ -270,14 +274,14 @@
                                                 <div class="price-box">
                                                     <h5>Total :</h5>
                                                     <h4 class="theme-color fw-bold">$106.58</h4>
-                                                </div>
+                                               </div>
 
                                                 <div class="button-group">
                                                     <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
                                                     <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
                                                     text-white">Checkout</a>
                                                 </div>
-                                            </div>
+                                            </div> 
                                         </div>
                                     </li>
                                     <li class="right-side onhover-dropdown">

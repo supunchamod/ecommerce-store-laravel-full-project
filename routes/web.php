@@ -44,7 +44,13 @@ Route::get('/admin/view-product',[ProductController :: class , 'view_product'])-
 
 //add to cart
 Route::get('/cart',[CartController :: class , 'index'])->name('cart.index');
+Route::get('/cart/details', [CartController::class, 'getCartDetails'])->name('cart.details');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::patch('/cart/update/{cartItemId}', [CartController::class, 'updateCart'])->name('cart.update');
+Route::get('/shop',[HomeController :: class , 'shop'])->name('shop');
+Route::get('/product-detail/{slug}',[HomeController :: class , 'productDetail'])->name('product-detail');
+
+
 
 
 Route::resource('products', ProductController::class);

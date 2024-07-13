@@ -17,33 +17,86 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = Cart :: all();
-        return view('cart',compact('cart'));
+        $userId = Auth::id(); // Get the ID of the currently logged-in user
+        $cart = Cart::with('product')->where('user_id', $userId)->get(); // Fetch cart items for the authenticated user
+            // Calculate current total amount
+        $currentTotalAmount = $cart->sum('amount');
+        $fullTotal = $currentTotalAmount + 100 ;
+        return view('cart', compact('cart','currentTotalAmount','fullTotal'));    
     
+    }
+
+    public function getCartDetails(){
+
+        $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
+        $cartCount = $cartItems->sum('quantity');
+        $cartTotal = $cartItems->sum('amount');
+        
+        return compact('cartItems', 'cartCount', 'cartTotal');
     }
 
     public function addToCart(Request $request)
     {
+        // Find the product by its ID
         $product = Product::find($request->product_id);
-
+        
+        // Check if the product exists
         if (!$product) {
-            return redirect()->back()->with('error', 'Product not found.');
+            return response()->json(['success' => false, 'message' => 'Product not found.'], 404);
         }
-
-        $cart = Cart::updateOrCreate(
-            [
-                'user_id' =>Auth::id(),
+    
+        // Calculate the save amount and the new amount
+        $saveAmount = $product->productOldPrice - $product->productPrice;
+        $newAmount = $product->productPrice * $request->quantity;
+    
+        // Check if the product is already in the cart for the current user
+        $cartItem = Cart::where('user_id', Auth::id())
+                        ->where('product_id', $request->product_id)
+                        ->first();
+    
+        if ($cartItem) {
+            // If the product is already in the cart, update the quantity and amount
+            $cartItem->quantity += $request->quantity;
+            $cartItem->amount = $product->productPrice * $cartItem->quantity;
+            $cartItem->save();
+        } else {
+            // If the product is not in the cart, create a new cart item
+            $cartItem = Cart::create([
+                'user_id' => Auth::id(),
                 'product_id' => $request->product_id,
-                'save_amount' =>$product->productOldPrice - $product->productPrice,
-                'amount' => $product->productPrice * $request->quantity,            
-            ],
-            [
-                'quantity' => \DB::raw('quantity + ' . $request->quantity)
-            ]
-        );
-
-        return redirect()->back()->with('success', 'Product added to cart.');
+                'quantity' => $request->quantity,
+                'save_amount' => $saveAmount,
+                'amount' => $newAmount,
+                'status' => 'new' // Adjust status as needed
+            ]);
+        }
+    
+        return response()->json(['success' => true, 'message' => 'Product added to cart.']);
     }
+    
+
+    public function updateCart(Request $request, $cartItemId)
+    {
+        $cartItem = Cart::find($cartItemId);
+    
+        if (!$cartItem) {
+            return response()->json(['success' => false, 'message' => 'Cart item not found'], 404);
+        }
+    
+        $quantity = $request->input('quantity');
+    
+        // Update quantity and amount
+        $cartItem->quantity = $quantity;
+        $cartItem->amount = $cartItem->product->productPrice * $quantity;
+        $cartItem->save();
+    
+        // Calculate the total cart amount
+        $totalAmount = Cart::where('user_id', Auth::id())->sum('amount');
+    
+        return response()->json(['success' => true, 'amount' => $cartItem->amount, 'quantity' => $cartItem->quantity, 'totalAmount' => $totalAmount]);
+    }
+    
+    
 
     /**
      * Show the form for creating a new resource.

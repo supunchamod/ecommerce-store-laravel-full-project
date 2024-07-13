@@ -1,5 +1,7 @@
-@extends('layouts.inner-app')
+
+@extends('layouts.main')
 @section('content')
+
   <!-- Cart Section Start -->
   <section class="cart-section section-b-space">
         <div class="container-fluid-lg">
@@ -10,7 +12,7 @@
                             <table class="table">
                                 <tbody>
                                     @foreach($cart as $data)
-                                    <tr class="product-box-contain">
+                                    <tr class="product-box-contain" data-id="{{ $data->id }}">
                                         <td class="product-detail">
                                             <div class="product border-0">
                                                 <a href="product-left-thumbnail.html" class="product-image">
@@ -24,10 +26,10 @@
                                                         </li>
 
                                                         <li class="text-content"><span class="text-title">Sold
-                                                                By:</span> Fresho</li>
+                                                                By:</span> {{ Auth::user()->name }}</li>
 
                                                         <li class="text-content"><span
-                                                                class="text-title">Quantity</span> - 500 g</li>
+                                                                class="text-title qty-input">Quantity</span> - {{$data->quantity}}</li>
 
                                                         <li>
                                                             <h5 class="text-content d-inline-block">Price:</h5>
@@ -38,24 +40,6 @@
                                                         <li>
                                                             <h5 class="saving theme-color">Saving : Rs:{{$data->save_amount}}</h5>
                                                         </li>
-
-                                                        <li class="quantity-price-box">
-                                                            <div class="cart_qty">
-                                                                <div class="input-group">
-                                                                    <button type="button" class="btn qty-left-minus"
-                                                                        data-type="minus" data-field="">
-                                                                        <i class="fa fa-minus ms-0"></i>
-                                                                    </button>
-                                                                    <input class="form-control input-number qty-input"
-                                                                        type="text" name="quantity" value="0">
-                                                                    <button type="button" class="btn qty-right-plus"
-                                                                        data-type="plus" data-field="">
-                                                                        <i class="fa fa-plus ms-0"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
                                                         <li>
                                                             <h5>Total: Rs:{{$data->amount}}</h5>
                                                         </li>
@@ -71,28 +55,25 @@
                                         </td>
 
                                         <td class="quantity">
-                                            <h4 class="table-title text-content">Qty</h4>
-                                            <div class="quantity-price">
-                                                <div class="cart_qty">
-                                                    <div class="input-group">
-                                                        <button type="button" class="btn qty-left-minus"
-                                                            data-type="minus" data-field="">
-                                                            <i class="fa fa-minus ms-0"></i>
-                                                        </button>
-                                                        <input class="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="0">
-                                                        <button type="button" class="btn qty-right-plus"
-                                                            data-type="plus" data-field="">
-                                                            <i class="fa fa-plus ms-0"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                    <h4 class="table-title text-content">Qty</h4>
+                                    <div class="quantity-price">
+                                        <div class="cart_qty">
+                                            <div class="input-group">
+                                                <button type="button" class="btn qty-left-minus" data-type="minus">
+                                                    <i class="fa fa-minus ms-0"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text" name="quantity" value="{{ $data->quantity }}">
+                                                <button type="button" class="btn qty-right-plus" data-type="plus">
+                                                    <i class="fa fa-plus ms-0"></i>
+                                                </button>
                                             </div>
-                                        </td>
+                                        </div>
+                                    </div>
+                                </td>
 
                                         <td class="subtotal">
                                             <h4 class="table-title text-content">Total</h4>
-                                            <h5>Rs:{{$data->amount}}</h5>
+                                            <h5>Rs:<span class="total-amount">{{ $data->amount }}</span></h5>
                                         </td>
 
                                         <td class="save-remove">
@@ -126,7 +107,7 @@
                             <ul>
                                 <li>
                                     <h4>Subtotal</h4>
-                                    <h4 class="price">$125.65</h4>
+                                    <h4 class="price" id="subtotal-amount">Rs:{{ $currentTotalAmount }}</h4>
                                 </li>
 
                                 <li>
@@ -144,7 +125,7 @@
                         <ul class="summery-total">
                             <li class="list-total border-top-0">
                                 <h4>Total (USD)</h4>
-                                <h4 class="price theme-color">$132.58</h4>
+                                <h4 class="price theme-color">Rs:{{ $fullTotal }}</h4>
                             </li>
                         </ul>
 
@@ -168,5 +149,61 @@
         </div>
     </section>
     <!-- Cart Section End -->
+
+
+<script>
+$(document).ready(function () {
+    var currentTotalAmount = {{ $currentTotalAmount }}; // Assuming $currentTotalAmount is passed from the controller
+
+    function updateCart(cartItemId, quantity) {
+        $.ajax({
+            url: '/cart/update/' + cartItemId,
+            method: 'PATCH',
+            data: {
+                quantity: quantity,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                // Update the amount in the subtotal cell
+                $('tr[data-id="' + cartItemId + '"]').find('.total-amount').text(response.amount.toFixed(2));
+
+                // Update the quantity input field
+                $('tr[data-id="' + cartItemId + '"]').find('.qty-input').val(response.quantity);
+
+                // Update the subtotal
+                currentTotalAmount = response.totalAmount;
+                $('#subtotal-amount').text('Rs:' + currentTotalAmount.toFixed(2));
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    $('.qty-right-plus, .qty-left-minus').on('click', function (e) {
+        e.preventDefault();
+
+        var $button = $(this);
+        var $input = $button.closest('.input-group').find('.qty-input');
+        var oldValue = parseInt($input.val());
+        var newVal = oldValue;
+        var cartItemId = $button.closest('.product-box-contain').data('id');
+
+        if ($button.hasClass('qty-right-plus')) {
+            newVal = oldValue + 2;
+        } else {
+            newVal = oldValue > 2 ? oldValue - 2 : 1;
+        }
+
+        updateCart(cartItemId, newVal);
+    });
+});
+
+
+
+
+</script>
+
+    
 
 @endsection
